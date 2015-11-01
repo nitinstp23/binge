@@ -1,7 +1,7 @@
 <div id="page_content">
   <div class="page-header">
     <h1>
-      <%= @dataset.model.class_name %> <small>Bulk import data</small>
+      <%= @dataset.model.titleized_name %> <small>Bulk import data</small>
     </h1>
   </div>
 
@@ -18,7 +18,7 @@
         <div class="row">
           <% group.each do |column| %>
           <div class="col-md-3">
-            <strong><%= column.name %></strong>: <%= column.type %>
+            <strong><%= column.name.upcase %></strong>: <%= column.type %>
           </div>
           <% end %>
         </div>
