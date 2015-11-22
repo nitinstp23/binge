@@ -4,12 +4,16 @@ module Binge
 
     attr_accessor :class_name
 
+    def base_class_name
+      class_name.split('::').last
+    end
+
     def titleized_name
-      class_name.split('::').last.titlecase
+      base_class_name.titlecase
     end
 
     def parameterized_class_name
-      titleized_name.underscore
+      base_class_name.underscore
     end
 
     def humanized_name

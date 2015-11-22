@@ -1,7 +1,3 @@
-module MultiJson
-  ParseError = MultiJson::LoadError
-end
-
 module Binge
   class DatasetsController < ApplicationController
 
@@ -20,7 +16,12 @@ module Binge
 
     def preview
       @dataset = Dataset.new(params[:dataset])
-      @dataset.preview_valid
+
+      if @dataset.valid?
+        @dataset.preview_valid
+      else
+        render :new
+      end
     end
 
     private

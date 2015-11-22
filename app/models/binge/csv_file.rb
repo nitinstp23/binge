@@ -19,11 +19,9 @@ module Binge
     end
 
     def import(model)
-      model.klass.transaction do
-        data.each_with_index do |row, index|
-          model_instance = model.create(row.to_hash)
-          push_errors(index, model_instance)
-        end
+      data.each_with_index do |row, index|
+        model_instance = model.create(row.to_hash)
+        push_errors(index, model_instance)
       end
     end
 

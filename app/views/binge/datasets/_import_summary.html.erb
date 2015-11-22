@@ -1,0 +1,22 @@
+<ul id="import-summary" class="list-group">
+  <li id="total-rows" class="list-group-item">
+    <span class="badge">
+      <%= results.total_rows %>
+    </span>
+    <span class='text-muted'>Total rows</span>
+  </li>
+
+  <li id="successful-rows" class="list-group-item">
+    <span class="badge badge-success">
+      <%= results.imported_rows %>
+    </span>
+    <span class='text-success'>Valid rows</span>
+  </li>
+
+  <li id="failed-rows" class="list-group-item">
+    <span class="badge badge-error">
+      <%= results.failed_rows %>
+    </span>
+    <span class='text-danger'>Invalid rows</span>
+  </li>
+</ul>

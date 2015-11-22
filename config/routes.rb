@@ -3,5 +3,5 @@ Binge::Engine.routes.draw do
   post '/datasets', to: 'datasets#create'
   post '/datasets/preview', to: 'datasets#preview'
 
-  root to: "datasets#new"
+  root to: 'datasets#new'
 end

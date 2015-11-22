@@ -56,6 +56,7 @@ module Binge
     end
 
     def has_result?
+      return false unless self.valid?
       data_file.present?
     end
 

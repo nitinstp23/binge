@@ -1,7 +1,7 @@
 <div id="page_content">
   <div class="page-header">
     <h1>
-      <%= @dataset.model.titleized_name %> <small>Bulk import data</small>
+      <%= @dataset.model.titleized_name %> - <small>Bulk import data</small>
     </h1>
   </div>
 
@@ -28,28 +28,7 @@
   </div>
 
   <% if @dataset.has_result? %>
-    <ul id="import-summary" class="list-group">
-      <li id="total-rows" class="list-group-item">
-        <span class="badge">
-          <%= @dataset.total_rows %>
-        </span>
-        <span class='text-muted'>Total rows</span>
-      </li>
-
-      <li id="successful-rows" class="list-group-item">
-        <span class="badge badge-success">
-          <%= @dataset.imported_rows %>
-        </span>
-        <span class='text-success'>Imported rows</span>
-      </li>
-
-      <li id="failed-rows" class="list-group-item">
-        <span class="badge badge-error">
-          <%= @dataset.failed_rows %>
-        </span>
-        <span class='text-danger'>Failed rows</span>
-      </li>
-    </ul>
+    <%= render 'import_summary', results: @dataset %>
 
     <% if @dataset.file.has_errors? %>
       <%= render 'error_report', results: @dataset.file, model: @dataset.model %>
