@@ -64,4 +64,3 @@ module Binge
     end
   end
 end
-

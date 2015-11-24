@@ -1,15 +1,15 @@
-<div id="error-report" class="panel panel-danger">
-  <div class="panel-heading errors-heading">
-    <h4 class="panel-title">
+<div id='error-report' class='panel panel-danger'>
+  <div class='panel-heading errors-heading'>
+    <h4 class='panel-title'>
       Error Report
     </h4>
   </div>
 
-  <div class="panel-body table-responsive">
-    <table class="table table-condensed table-bordered errors-table">
+  <div class='panel-body table-responsive'>
+    <table class='table table-condensed table-bordered errors-table'>
       <thead>
         <tr>
-          <th>Row Number</th>
+          <th>#</th>
 
           <% model.column_names.each do |column| %>
             <th><%= column.humanize %></th>
@@ -18,7 +18,7 @@
       </thead>
 
       <tbody>
-        <% results.rows_with_errors.each do |row| %>
+        <% file.rows_with_errors.each do |row| %>
           <tr>
             <td><%= row[:row_number] %></td>
 

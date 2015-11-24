@@ -40,13 +40,17 @@ module Binge
       rows_with_errors.any?
     end
 
+    def all_failed?
+      self.errors_count == self.size
+    end
+
     private
 
     OPTIONS = {
       headers: true,
       header_converters: :to_attribute,
       skip_blanks: true,
-      converters: [:strip, :all]
+      converters: [:strip, :downcase, :all]
     }
 
     def push_errors(index, model_instance)

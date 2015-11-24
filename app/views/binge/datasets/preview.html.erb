@@ -1,21 +1,24 @@
-<div id="page_content">
-  <div class="page-header">
+<div id='page_content'>
+  <div class='page-header'>
     <h1>
-      <%= @dataset.model.titleized_name %> <small>Preview import data</small>
+      <%= @dataset.model.titleized_name %> - <small>Preview import data</small>
     </h1>
   </div>
 
-  <%= render 'import_summary', results: @dataset %>
+  <%= render 'attributes', result: @dataset %>
+  <%= render 'import_summary', result: @dataset %>
 
-  <div class="mb30">
-    <%= form_for @dataset, html: {multipart: true, id: "data_upload_form", role: "form"} do |f| %>
-      <%= f.hidden_field :model_class_name %>
-      <%= f.hidden_field :data_file_cache %>
-      <%= f.submit "Import Valid Rows", class: "btn btn-primary" %>
-    <% end %>
-  </div>
+  <% unless @dataset.file.all_failed? %>
+    <div class='mb30'>
+      <%= form_for @dataset, html: {multipart: true, id: 'data_upload_form', role: 'form'} do |f| %>
+        <%= f.hidden_field :model_class_name %>
+        <%= f.hidden_field :data_file_cache %>
+        <%= f.submit 'Import Valid Rows', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  <% end %>
 
   <% if @dataset.file.has_errors? %>
-    <%= render 'error_report', results: @dataset.file, model: @dataset.model %>
+    <%= render 'error_report', file: @dataset.file, model: @dataset.model %>
   <% end %>
 </div>

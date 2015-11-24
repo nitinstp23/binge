@@ -1,0 +1,21 @@
+<div class='panel panel-default' id='attributes_panel'>
+  <div class='panel-heading'>
+    <h4 class='panel-title' data-toggle='collapse' data-target='#attributes_body' aria-expanded='true' aria-controls='attributes_body'>
+      Attributes <span id='attributes_status_icon' class='glyphicon glyphicon-chevron-up'></span>
+    </h4>
+  </div>
+
+  <div class='panel-collapse collapse in' id='attributes_body'>
+    <div class='panel-body'>
+      <% result.model.columns.in_groups_of(4, false).each do |group| %>
+      <div class='row'>
+        <% group.each do |column| %>
+        <div class='col-md-3'>
+          <strong><%= column.name.upcase %></strong>: <%= column.type %>
+        </div>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>

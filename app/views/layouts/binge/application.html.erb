@@ -29,12 +29,12 @@
         <ul class="nav navbar-nav">
           <% Binge::Model.all.each do |model| %>
             <li class='<%= "active" if @dataset.model.class_name == model.class_name %>'>
-              <a href="<%= upload_url(model.parameterized_class_name) %>"><%= model.titleized_name %></a>
+              <a href="<%= upload_url(model.parameterized_class_name) %>"><%= model.base_class_name %></a>
             </li>
           <% end %>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#">Back To Application</a></li>
+          <li><a href="/">Back To Application</a></li>
         </ul>
       </div>
     </nav>
