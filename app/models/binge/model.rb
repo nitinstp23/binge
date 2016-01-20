@@ -25,10 +25,10 @@ module Binge
     end
 
     def columns
-      klass.fields.collect do |f|
-        next if ["_id", "created_at", "updated_at"].include?(f.last.name)
-        f.last
-      end.compact
+      # This should not be done for each row. #optimize
+      @columns ||= Binge::Attributes.const_get("For#{klass}").all
+    rescue NameError => ex
+      []
     end
 
     def column_names
@@ -39,13 +39,23 @@ module Binge
       self.class_name == other.class_name
     end
 
+    def mapped_attributes(attributes)
+      # This should not be done for each row. #optimize
+      mapper_klass ||= Binge::Mappers.const_get("For#{klass}")
+      mapper_klass.new(attributes).to_hash
+    rescue NameError => ex
+      attributes
+    end
+
     def create(attributes)
+      attributes = mapped_attributes(attributes)
       instance = klass.new(attributes)
       instance.save if instance.valid?
       instance
     end
 
     def validate(attributes)
+      attributes = mapped_attributes(attributes)
       instance = klass.new(attributes)
       instance.valid?
       instance
