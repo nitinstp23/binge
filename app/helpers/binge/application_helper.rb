@@ -21,7 +21,7 @@ module Binge
       content_tag :td, class: "error-cell" do
         error_title = "#{column_errors.join(', ')} "
         content_tag :div, class: "error-text", :'data-toggle' => "tooltip", title: error_title do
-          column_value || 'BLANK'
+          column_value.present? ? column_value : 'BLANK'
         end
       end
     end
