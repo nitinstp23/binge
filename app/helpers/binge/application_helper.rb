@@ -13,7 +13,7 @@ module Binge
     end
 
     def cell_value(model, column_name)
-      column_errors = model.errors[column_name]
+      column_errors = model.errors[column_name] | model.errors[column_name.sub('_id', '')]
       column_value  = model.public_send(column_name)
 
       return content_tag(:td, column_value) if column_errors.empty?
@@ -21,7 +21,7 @@ module Binge
       content_tag :td, class: "error-cell" do
         error_title = "#{column_errors.join(', ')} "
         content_tag :div, class: "error-text", :'data-toggle' => "tooltip", title: error_title do
-          column_value.present? ? column_value : 'BLANK'
+          column_value.present? ? column_value.to_s : 'BLANK'
         end
       end
     end
