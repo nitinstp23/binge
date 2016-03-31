@@ -1,4 +1,4 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
 # Declare your gem's dependencies in binge.gemspec.
 # Bundler will treat runtime dependencies like base dependencies, and
@@ -10,9 +10,9 @@ gemspec
 # Git. Remember to move these dependencies to your gemspec before releasing
 # your gem to rubygems.org.
 
-gem "jquery-rails"
-gem "jquery-ui-rails"
-gem "carrierwave"
+gem 'jquery-rails'
+gem 'shrine', github: 'nitinstp23/shrine', branch: 'master'
+
 
 group :test, :development do
   gem 'rspec-rails', '~> 2.0'

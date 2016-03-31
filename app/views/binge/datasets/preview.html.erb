@@ -12,7 +12,7 @@
     <div class='mb30'>
       <%= form_for @dataset, html: {multipart: true, id: 'data_upload_form', role: 'form'} do |f| %>
         <%= f.hidden_field :model_class_name %>
-        <%= f.hidden_field :data_file_cache %>
+        <%= f.hidden_field :data_file_data %>
         <%= f.submit 'Import Valid Rows', class: 'btn btn-primary' %>
       <% end %>
     </div>
