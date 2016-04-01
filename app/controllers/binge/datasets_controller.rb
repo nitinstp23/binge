@@ -17,7 +17,7 @@ module Binge
     def preview
       @dataset = Dataset.new(params[:dataset])
       @dataset.preview_valid
-      render :new
+      render :preview
     end
 
     private
