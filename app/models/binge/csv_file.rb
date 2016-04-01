@@ -10,7 +10,7 @@ module Binge
     attr_reader :data, :rows_with_errors
 
     def initialize(data)
-      @data = CSV.parse(data.read, OPTIONS)
+      @data = parse_csv(data)
       @rows_with_errors = []
     end
 
@@ -56,6 +56,12 @@ module Binge
     def push_errors(index, model_instance)
       return unless model_instance.errors.any?
       @rows_with_errors << {row_number: index+1, model: model_instance}
+    end
+
+    def parse_csv(data)
+      CSV.parse(data.read, OPTIONS)
+    rescue CSV::MalformedCSVError => ex
+      EmptyFile.new
     end
   end
 end
