@@ -1,16 +1,19 @@
 require 'forwardable'
+require 'carrierwave/validations/active_model'
 
 module Binge
   class Dataset
     include ActiveModel::Model
-    include FileUploader[:data_file]
+    extend CarrierWave::Mount
+    include CarrierWave::Validations::ActiveModel
     extend Forwardable
 
     def_delegators :import_result, :total_rows,
                                    :failed_rows,
                                    :imported_rows
 
-    attr_accessor :data_file_data, :model
+    attr_accessor :data_file, :model
+    mount_uploader :data_file, DataUploader
 
     def initialize(attributes = {})
       if attributes[:model_class_name]
@@ -22,7 +25,8 @@ module Binge
     end
 
     validates :model, presence: {message: "Model can't be blank"}
-    validates :data_file, presence: {message: "Data file can't be blank"}
+    validates_integrity_of :data_file
+    validates :data_file, presence: {message: "Data file can't be blank"}, unless: "data_file_integrity_error"
     validate :atleast_one_row, unless: "data_file.blank?"
     validate :header_matches_model_attributes, unless: "data_file.blank? or model.blank?"
 

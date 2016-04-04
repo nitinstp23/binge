@@ -11,7 +11,7 @@ gemspec
 # your gem to rubygems.org.
 
 gem 'jquery-rails'
-gem 'shrine', github: 'nitinstp23/shrine', branch: 'master'
+gem 'carrierwave'
 
 
 group :test, :development do

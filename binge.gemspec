@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails'
   s.add_dependency 'jquery-rails'
-  s.add_dependency 'shrine'
+  s.add_dependency 'carrierwave'
 
   s.add_development_dependency 'sqlite3', '~> 1.3.10'
 end
