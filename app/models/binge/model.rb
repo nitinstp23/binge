@@ -26,7 +26,7 @@ module Binge
 
     def columns
       # This should not be done for each row. #optimize
-      @columns ||= Binge::Attributes.const_get("For#{klass}").all
+      @columns ||= Binge::Attributes.const_get("For#{base_class_name}").all
     rescue NameError => ex
       []
     end
