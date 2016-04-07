@@ -41,7 +41,7 @@ module Binge
 
     def mapped_attributes(attributes)
       # This should not be done for each row. #optimize
-      mapper_klass ||= Binge::Mappers.const_get("For#{klass}")
+      mapper_klass ||= Binge::Mappers.const_get("For#{base_class_name}")
       mapper_klass.new(attributes).to_hash
     rescue NameError => ex
       attributes
